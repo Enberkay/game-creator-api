@@ -15,6 +15,7 @@ Rust Actix Web API สำหรับจัดการข้อมูลผู�
 ## 🚀 Getting Started
 
 1. Clone repository:
+https://github.com/Enberkay/game-creator-api.git
 
 2. สร้าง .env
 DATABASE_URL=postgres://myuser:mypassword@localhost:5432/mydatabase

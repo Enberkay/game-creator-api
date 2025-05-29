@@ -22,3 +22,4 @@ pub fn config(cfg: &mut web::ServiceConfig) {
             .route("/{id}/with-creator", web::get().to(game_controller::get_game_with_creator)),
     );
 }
+
