@@ -1,0 +1,37 @@
+# Rust build files
+/target/
+
+migrations/target/
+target/
+
+# Cargo.lock ถ้าเป็น library อาจเก็บ แต่ถ้าเป็น binary app ให้เก็บ
+Cargo.lock
+
+# Environment variables
+.env
+.env.*          # ถ้ามีไฟล์ env ตัวอื่นๆ เช่น .env.local
+
+# IDE และ Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# PostgreSQL Docker volume (ถ้ามีเก็บในโฟลเดอร์โปรเจค)
+pgdata/
+
+# Migrations target build
+migrations/target/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# 기타
+*.bak
+*.tmp
