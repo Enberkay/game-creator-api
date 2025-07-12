@@ -1,4 +1,4 @@
-use actix_web::{web, HttpResponse, Responder};
+use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use chrono::Utc;
 use sea_orm::{ActiveModelTrait, DatabaseConnection, EntityTrait, Set};
 use uuid::Uuid;
@@ -6,13 +6,21 @@ use uuid::Uuid;
 use crate::models::creator::Entity as CreatorEntity;
 use crate::models::game;
 use crate::models::game::Entity as GameEntity;
+use crate::middleware::auth::get_user_from_request;
 
 use crate::dtos::{CreateGame, UpdateGame};
 
 pub async fn create_game(
+    req: HttpRequest,
     db: web::Data<DatabaseConnection>,
     json: web::Json<CreateGame>,
 ) -> impl Responder {
+    // Get current user from middleware
+    let _user = match get_user_from_request(&req) {
+        Ok(user) => user,
+        Err(_) => return HttpResponse::Unauthorized().body("Unauthorized"),
+    };
+
     let new_game = game::ActiveModel {
         id: Set(Uuid::new_v4()),
         name: Set(json.name.clone()),

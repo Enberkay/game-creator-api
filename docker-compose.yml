@@ -5,7 +5,7 @@ services:
     image: postgres:latest
     container_name: postgres
     environment:
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: game_creator
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     volumes:

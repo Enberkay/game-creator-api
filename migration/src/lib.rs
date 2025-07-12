@@ -4,6 +4,7 @@ mod m20220101_000001_create_table;
 mod m20250529_055640_create_creator_and_game_tables;
 mod m20250529_061644_rename_creator_to_creators;
 mod m20250529_070451_rename_game_to_games;
+mod m20250529_080000_create_users_table;
 
 pub struct Migrator;
 
@@ -15,6 +16,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20250529_055640_create_creator_and_game_tables::Migration),
             Box::new(m20250529_061644_rename_creator_to_creators::Migration),
             Box::new(m20250529_070451_rename_game_to_games::Migration),
+            Box::new(m20250529_080000_create_users_table::Migration),
         ]
     }
 }

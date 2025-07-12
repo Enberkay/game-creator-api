@@ -7,6 +7,7 @@ mod routes;
 mod controllers;
 mod models;
 mod dtos;
+mod middleware;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
