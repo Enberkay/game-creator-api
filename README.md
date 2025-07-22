@@ -79,12 +79,12 @@ RUST_LOG=debug cargo run
 
 | Method | URL                        | รายละเอียด                 |
 | ------ | -------------------------- | -------------------------- |
-| POST   | `/api/creators`            | ✅ สร้าง Creator ใหม่      |
-| GET    | `/api/creators`            | 📥 ดู Creator ทั้งหมด      |
-| GET    | `/api/creators/{id}`       | 🔍 ดู Creator รายตัว       |
-| PUT    | `/api/creators/{id}`       | 🛠️ แก้ไขข้อมูล Creator     |
-| DELETE | `/api/creators/{id}`       | ❌ ลบ Creator              |
-| GET    | `/api/creators/{id}/games` | 📚 ดูเกมทั้งหมดของ Creator |
+| POST   | `/api/creators`            | สร้าง Creator ใหม่      |
+| GET    | `/api/creators`            | ดู Creator ทั้งหมด      |
+| GET    | `/api/creators/{id}`       | ดู Creator รายตัว       |
+| PUT    | `/api/creators/{id}`       | แก้ไขข้อมูล Creator     |
+| DELETE | `/api/creators/{id}`       | ลบ Creator              |
+| GET    | `/api/creators/{id}/games` | ดูเกมทั้งหมดของ Creator |
 
 ### Games
 
@@ -97,12 +97,12 @@ RUST_LOG=debug cargo run
 
 | Method | URL                            | รายละเอียด                  |
 | ------ | ------------------------------ | --------------------------- |
-| POST   | `/api/games`                   | ✅ สร้างเกมใหม่             |
-| GET    | `/api/games`                   | 📥 ดูเกมทั้งหมด             |
-| GET    | `/api/games/{id}`              | 🔍 ดูเกมรายตัว              |
-| PUT    | `/api/games/{id}`              | ♻️ แก้ไขข้อมูลเกม           |
-| DELETE | `/api/games/{id}`              | ❌ ลบเกม                    |
-| GET    | `/api/games/{id}/with-creator` | 🔗 ดูเกมพร้อมข้อมูล Creator |
+| POST   | `/api/games`                   | สร้างเกมใหม่             |
+| GET    | `/api/games`                   | ดูเกมทั้งหมด             |
+| GET    | `/api/games/{id}`              | ดูเกมรายตัว              |
+| PUT    | `/api/games/{id}`              | แก้ไขข้อมูลเกม           |
+| DELETE | `/api/games/{id}`              | ลบเกม                    |
+| GET    | `/api/games/{id}/with-creator` | ดูเกมพร้อมข้อมูล Creator |
 
 ## 📊 Database Schema
 
@@ -149,7 +149,7 @@ CREATE TABLE games (
 ### สร้าง Creator
 
 ```bash
-1. 🔧 สร้าง Creator ใหม่
+1. สร้าง Creator ใหม่
 curl -X POST http://localhost:8080/api/creators \
   -H "Content-Type: application/json" \
   -d '{
@@ -158,13 +158,13 @@ curl -X POST http://localhost:8080/api/creators \
         "email": "hideo.kojima@example.com"
     }'
 
-2. 📋 ดู Creator ทั้งหมด
+2. ดู Creator ทั้งหมด
 curl -X GET http://localhost:8080/api/creators
 
-3. 🔍 ดู Creator ตาม ID
+3. ดู Creator ตาม ID
 curl -X GET http://localhost:8080/api/creators/{creator-id}
 
-4. ✏️ แก้ไขข้อมูล Creator
+4. แก้ไขข้อมูล Creator
 curl -X PUT http://localhost:8080/api/creators/{creator-id} \
   -H "Content-Type: application/json" \
   -d '{
@@ -173,17 +173,17 @@ curl -X PUT http://localhost:8080/api/creators/{creator-id} \
         "email": "kojima.studios@example.com"
     }'
 
-5. 🗑️ ลบ Creator
+5. ลบ Creator
 curl -X DELETE http://localhost:8080/api/creators/{creator-id}
 
-🎮 ดูเกมทั้งหมดของ Creator
+ดูเกมทั้งหมดของ Creator
 curl -X GET http://localhost:8080/api/creators/{creator-id}/games
 ```
 
 ### สร้าง Game
 
 ```bash
-1. 🎮 สร้างเกมใหม่
+1. สร้างเกมใหม่
 curl -X POST http://localhost:8080/api/games \
   -H "Content-Type: application/json" \
   -d '{
@@ -194,14 +194,14 @@ curl -X POST http://localhost:8080/api/games \
   }'
 หมายเหตุ: ให้แทน {creator-id} ด้วย UUID ของผู้สร้างที่มีอยู่ในระบบ
 
-2. 📋 ดูเกมทั้งหมด
+2. ดูเกมทั้งหมด
 curl -X GET http://localhost:8080/api/games
 
-3. 🔍 ดูเกมตาม ID
+3. ดูเกมตาม ID
 curl -X GET http://localhost:8080/api/games/{game-id}
 แทน {game-id} ด้วย UUID ของเกมที่ต้องการดูรายละเอียด
 
-4. ✏️ แก้ไขข้อมูลเกม
+4. แก้ไขข้อมูลเกม
 curl -X PUT http://localhost:8080/api/games/{game-id} \
   -H "Content-Type: application/json" \
   -d '{
@@ -212,49 +212,10 @@ curl -X PUT http://localhost:8080/api/games/{game-id} \
   }'
 สามารถส่งเฉพาะ field ที่ต้องการอัปเดตได้ เช่น อัปเดตแค่ description อย่างเดียวก็ได้
 
-5. 🗑️ ลบเกม
+5. ลบเกม
 curl -X DELETE http://localhost:8080/api/games/{game-id}
 
-6. 👤 ดูเกมพร้อมข้อมูลผู้สร้าง
+6. ดูเกมพร้อมข้อมูลผู้สร้าง
 curl -X GET http://localhost:8080/api/games/{game-id}/with-creator
 Endpoint นี้จะคืนข้อมูลเกมพร้อมกับข้อมูลของ creator ที่เกี่ยวข้องในรูปแบบ JSON เดียวกัน
-```
-
-### Commands
-
-```bash
-# Build project
-cargo build
-
-# Run with logs
-RUST_LOG=debug cargo run
-
-```
-
-## 📈 Features
-
-- ✅ CRUD operations สำหรับ Creator และ Game
-- ✅ ความสัมพันธ์ 1:M (Creator มีหลาย Games)
-- ✅ Foreign key constraints
-- ✅ UUID primary keys
-- ✅ Timestamp tracking
-- ✅ Input validation
-- ✅ Error handling
-- ✅ JSON API responses
-- ✅ Docker support
-- ✅ Database migrations
-
-## 🔧 Troubleshooting
-
-### Database Connection Issues
-
-```bash
-# ตรวจสอบ Docker containers
-docker-compose ps
-
-# ดู logs
-docker-compose logs postgres
-
-# Restart services
-docker-compose restart
 ```

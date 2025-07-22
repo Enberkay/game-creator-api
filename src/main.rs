@@ -17,7 +17,7 @@ async fn main() -> std::io::Result<()> {
 
     let port = env::var("PORT").unwrap_or_else(|_| "8080".to_string());
 
-    println!("🚀 Server running at http://localhost:{port}");
+    println!("Server running at http://localhost:{port}");
 
     HttpServer::new(move || {
         App::new()
